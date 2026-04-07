@@ -296,6 +296,9 @@
             .hero {
                 padding-top: 160px;
                 padding-bottom: 100px;
+                min-height: 90vh;
+                display: flex;
+                align-items: center;
             }
         }
 
@@ -395,38 +398,52 @@
             }
         }
 
-/* Para desktop (pantallas grandes) */
+        /* Hero Image - Estilos unificados con animación y border-radius */
+        .hero-image {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.12));
+            border-radius: 24px;
+            overflow: hidden;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 24px;
+        }
+
+        /* Desktop: imagen absoluta centrada verticalmente */
         @media (min-width: 992px) {
-            .hero {
-                min-height: 90vh;
-                display: flex;
-                align-items: center;
-            }
-            
             .hero-image {
                 position: absolute;
                 right: 5%;
                 top: 50%;
-                transform: translateY(-50%);  /* Centrado perfecto */
+                transform: translateY(-50%);
                 width: 40%;
                 max-width: 550px;
                 margin: 0;
+                animation: float-desktop 6s ease-in-out infinite;
             }
         }
-        
-        /* Para tablet */
+
+        /* Tablet */
         @media (min-width: 768px) and (max-width: 991px) {
             .hero-image {
-                margin: 0 auto;  /* Sin margen superior */
                 max-width: 450px;
+                margin: 1rem auto 0;
             }
         }
-        
-        /* Para móvil */
+
+        /* Móvil */
         @media (max-width: 767px) {
             .hero-image {
-                margin: 0 auto;  /* Sin margen superior */
                 max-width: 350px;
+                margin: 1.5rem auto 0;
             }
         }
 
@@ -948,10 +965,30 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Animación float para móvil y tablet */
         @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-15px) translateX(10px); }
-            100% { transform: translateY(0) translateX(0); }
+            0% {
+                transform: translateY(0px) translateX(0);
+            }
+            50% {
+                transform: translateY(-15px) translateX(8px);
+            }
+            100% {
+                transform: translateY(0px) translateX(0);
+            }
+        }
+
+        /* Animación float para desktop (con position absolute) */
+        @keyframes float-desktop {
+            0% {
+                transform: translateY(-50%) translateX(0);
+            }
+            50% {
+                transform: translateY(-55%) translateX(10px);
+            }
+            100% {
+                transform: translateY(-50%) translateX(0);
+            }
         }
 
         @keyframes pulse {
@@ -985,9 +1022,15 @@
         /* Estilos para elementos con animación scroll */
         .value-card, .offering-item, .tool-card, .owner-card {
             opacity: 0;
-            transition: all 0.5s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
-    </style>
+        
+        .value-card.visible, .offering-item.visible, .tool-card.visible, .owner-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+</style>
 </head>
 <body>
     <header>
