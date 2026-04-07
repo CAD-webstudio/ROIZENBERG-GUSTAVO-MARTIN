@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Roizenberg | Administración de Consorcios</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.12);
             --border-radius: 12px;
-            --section-spacing: 120px;
+            --section-spacing: 80px;
         }
 
         * {
@@ -56,6 +56,7 @@
         img {
             max-width: 100%;
             height: auto;
+            display: block;
         }
 
         .container {
@@ -65,11 +66,12 @@
             padding: 0 2rem;
         }
 
+        /* Botones responsivos */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 1rem 2.2rem;
+            padding: 0.9rem 1.8rem;
             background-color: var(--color-primary);
             color: white;
             border: none;
@@ -77,9 +79,19 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.95rem;
             position: relative;
             overflow: hidden;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 480px) {
+            .btn {
+                padding: 0.7rem 1.4rem;
+                font-size: 0.85rem;
+                white-space: normal;
+            }
         }
 
         .btn::before {
@@ -123,14 +135,14 @@
             color: white;
         }
 
-        /* Header */
+        /* Header Responsive */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(245, 243, 239, 0.95);
+            background-color: rgba(245, 243, 239, 0.98);
             backdrop-filter: blur(10px);
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -140,51 +152,52 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 0;
+            padding: 1rem 0;
+            gap: 1rem;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--color-primary);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            flex-shrink: 0;
         }
 
-        .logo-img {
-            height: 48px;
+        .logo img {
+            height: 60px;
             width: auto;
-            /* Placeholder para el logo real */
-            background-color: #e0e0e0;
-            border-radius: 12px;
-            padding: 4px 12px;
+        }
+
+        .logo p {
             font-size: 0.9rem;
-            color: var(--color-primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 20px;
+            margin-bottom: 0;
+            line-height: 1.3;
         }
 
-        .logo-img i {
-            font-size: 1.5rem;
-        }
-
-        .logo span {
-            color: var(--color-accent);
+        @media (max-width: 768px) {
+            .logo p {
+                display: none;
+            }
+            .logo img {
+                height: 50px;
+            }
         }
 
         .nav-menu {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
+            align-items: center;
         }
 
         .nav-link {
             font-weight: 500;
             transition: var(--transition);
             position: relative;
+            font-size: 1rem;
         }
 
         .nav-link::after {
@@ -217,15 +230,67 @@
             transition: var(--transition);
         }
 
-        /* Hero Section */
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 1.5rem;
+            }
+            .nav-link {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                padding-top: 100px;
+                transition: 0.4s ease-in-out;
+                gap: 0;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-link {
+                padding: 1.2rem 0;
+                display: block;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Hero Section Responsive */
         .hero {
-            padding-top: 180px;
-            padding-bottom: 100px;
+            padding-top: 120px;
+            padding-bottom: 60px;
             position: relative;
             overflow: hidden;
             background: linear-gradient(rgba(245, 243, 239, 0.92), rgba(245, 243, 239, 0.92)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             background-size: cover;
             background-position: center;
+        }
+
+        @media (min-width: 992px) {
+            .hero {
+                padding-top: 160px;
+                padding-bottom: 100px;
+            }
         }
 
         .hero::before {
@@ -246,19 +311,44 @@
             max-width: 700px;
         }
 
+        @media (max-width: 992px) {
+            .hero-content {
+                text-align: center;
+                margin: 0 auto;
+            }
+        }
+
         .hero-title {
-            font-size: 3.2rem;
+            font-size: 2.2rem;
             margin-bottom: 1.5rem;
             color: var(--color-primary);
             animation: fadeInUp 1s ease-out;
         }
 
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+        }
+
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--color-gray);
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease-out 0.2s forwards;
             opacity: 0;
+        }
+
+        @media (min-width: 768px) {
+            .hero-description {
+                font-size: 1.1rem;
+            }
         }
 
         .owner-badge {
@@ -266,14 +356,22 @@
             align-items: center;
             gap: 12px;
             background: rgba(45, 78, 110, 0.1);
-            padding: 0.8rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 100px;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
             font-weight: 500;
             color: var(--color-primary);
             backdrop-filter: blur(4px);
             animation: fadeInUp 1s ease-out 0.1s forwards;
             opacity: 0;
+            font-size: 0.85rem;
+        }
+
+        @media (min-width: 768px) {
+            .owner-badge {
+                font-size: 1rem;
+                padding: 0.8rem 1.5rem;
+            }
         }
 
         .hero-actions {
@@ -281,39 +379,88 @@
             gap: 1rem;
             animation: fadeInUp 1s ease-out 0.4s forwards;
             opacity: 0;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 480px) {
+            .hero-actions {
+                justify-content: center;
+                gap: 0.8rem;
+            }
         }
 
         .hero-image {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 45%;
-            max-width: 550px;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 2rem auto 0;
             animation: float 6s ease-in-out infinite;
             filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.12));
             border-radius: 24px;
             overflow: hidden;
         }
 
-        /* Sección Sobre Nosotros (reemplaza features) */
-        .about-us {
-            padding: var(--section-spacing) 0;
-            background-color: white;
+        @media (min-width: 992px) {
+            .hero-image {
+                position: absolute;
+                right: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40%;
+                max-width: 550px;
+                margin: 0;
+            }
         }
 
+        /* Secciones generales responsivas */
+        .about-us, .philosophy, .offerings, .tools, .contact-direct {
+            padding: 60px 0;
+        }
+
+        @media (min-width: 768px) {
+            .about-us, .philosophy, .offerings, .tools, .contact-direct {
+                padding: 80px 0;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .about-us, .philosophy, .offerings, .tools, .contact-direct {
+                padding: var(--section-spacing) 0;
+            }
+        }
+
+        /* About Us Grid Responsive */
         .about-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             align-items: center;
         }
 
+        @media (min-width: 768px) {
+            .about-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+            }
+        }
+
         .about-content h2 {
-            font-size: 2.8rem;
+            font-size: 2rem;
             position: relative;
             display: inline-block;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
         }
 
         .about-content h2::after {
@@ -328,20 +475,27 @@
         }
 
         .about-text p {
-            margin-bottom: 1.2rem;
+            margin-bottom: 1rem;
             color: var(--color-gray);
-            font-size: 1.05rem;
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-text p {
+                font-size: 1.05rem;
+            }
         }
 
         .family-badge {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin: 2rem 0 1.5rem;
+            margin: 1.5rem 0 1rem;
             padding: 1rem;
             background: var(--color-light);
             border-radius: var(--border-radius);
             border-left: 4px solid var(--color-accent);
+            font-size: 0.9rem;
         }
 
         .about-image {
@@ -349,57 +503,118 @@
             overflow: hidden;
             box-shadow: var(--shadow-hover);
             background: #e9e5de;
-            min-height: 380px;
+            min-height: 280px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Filosofía */
-        .philosophy {
-            padding: var(--section-spacing) 0;
-            background-color: var(--color-light);
+        @media (min-width: 768px) {
+            .about-image {
+                min-height: 380px;
+            }
         }
 
+        /* Section Titles Responsive */
         .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                margin-bottom: 3.5rem;
+            }
         }
 
         .section-title h2 {
-            font-size: 2.8rem;
+            font-size: 1.8rem;
             position: relative;
             display: inline-block;
+        }
+
+        @media (min-width: 768px) {
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
         }
 
         .section-title h2::after {
             content: '';
             position: absolute;
-            bottom: -15px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
             background: linear-gradient(to right, var(--color-primary), var(--color-accent));
             border-radius: 2px;
         }
 
+        @media (min-width: 768px) {
+            .section-title h2::after {
+                width: 80px;
+                height: 4px;
+                bottom: -15px;
+            }
+        }
+
         .section-title p {
             max-width: 700px;
-            margin: 2rem auto 0;
+            margin: 1.5rem auto 0;
             color: var(--color-gray);
-            font-size: 1.1rem;
+            font-size: 0.95rem;
+            padding: 0 1rem;
         }
 
-        .values-grid {
+        @media (min-width: 768px) {
+            .section-title p {
+                font-size: 1.1rem;
+                margin-top: 2rem;
+            }
+        }
+
+        /* Grids Responsivos */
+        .values-grid, .offerings-grid, .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
 
-        .value-card {
+        @media (min-width: 480px) {
+            .values-grid, .offerings-grid, .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .values-grid, .offerings-grid, .tools-grid {
+                gap: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .values-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .offerings-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Cards Responsive */
+        .value-card, .tool-card {
             background-color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -407,160 +622,276 @@
             border-bottom: 3px solid var(--color-accent);
         }
 
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-hover);
-        }
-
-        .value-icon {
-            font-size: 2.5rem;
-            color: var(--color-primary);
-            margin-bottom: 1rem;
-        }
-
-        /* Servicios (Qué ofrecemos) */
-        .offerings {
-            padding: var(--section-spacing) 0;
-            background-color: white;
-        }
-
-        .offerings-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+        @media (min-width: 768px) {
+            .value-card, .tool-card {
+                padding: 2rem;
+            }
         }
 
         .offering-item {
             background: var(--color-light);
-            padding: 2rem;
+            padding: 1rem 1.2rem;
             border-radius: var(--border-radius);
             transition: var(--transition);
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
+        }
+
+        @media (min-width: 768px) {
+            .offering-item {
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+            }
         }
 
         .offering-item i {
-            font-size: 2.2rem;
+            font-size: 1.5rem;
             color: var(--color-primary);
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .offering-item i {
+                font-size: 2rem;
+            }
         }
 
         .offering-item span {
             font-weight: 500;
+            font-size: 0.85rem;
         }
 
-        /* Gestión clara */
+        @media (min-width: 768px) {
+            .offering-item span {
+                font-size: 1rem;
+            }
+        }
+
+        /* Management Section Responsive */
         .management {
-            padding: var(--section-spacing) 0;
+            padding: 60px 0;
             background: linear-gradient(120deg, var(--color-primary), var(--color-primary-dark));
             color: white;
             position: relative;
         }
 
+        @media (min-width: 768px) {
+            .management {
+                padding: 80px 0;
+            }
+        }
+
         .management-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
             align-items: center;
         }
 
+        @media (min-width: 992px) {
+            .management-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
         .management-content h3 {
-            font-size: 2rem;
+            font-size: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .management-content h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .management-content h3 {
+                font-size: 2rem;
+            }
         }
 
         .management-content p {
             opacity: 0.9;
             margin-bottom: 1rem;
+            font-size: 0.95rem;
         }
 
-        /* Herramientas y facilidades */
-        .tools {
-            padding: var(--section-spacing) 0;
-            background-color: var(--color-light);
+        @media (min-width: 768px) {
+            .management-content p {
+                font-size: 1rem;
+            }
         }
 
-        .tools-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .tool-card {
-            background: white;
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .tool-card i {
-            font-size: 2.8rem;
-            color: var(--color-accent);
-            margin-bottom: 1rem;
-        }
-
-        /* Contacto directo */
-        .contact-direct {
-            padding: var(--section-spacing) 0;
-            background-color: white;
-        }
-
+        /* Contact Grid Responsive */
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        @media (min-width: 768px) {
+            .contact-grid {
+                gap: 3rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: center;
+            }
         }
 
         .owner-card {
             background: var(--color-light);
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: var(--border-radius);
             text-align: center;
         }
 
-        .owner-card h3 {
-            color: var(--color-primary);
+        @media (min-width: 768px) {
+            .owner-card {
+                padding: 2rem;
+            }
         }
 
         .contact-phone {
-            font-size: 2rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--color-primary);
             margin: 1rem 0;
+            word-break: break-word;
         }
 
-        /* CTA final */
+        @media (min-width: 768px) {
+            .contact-phone {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .contact-phone {
+                font-size: 2rem;
+            }
+        }
+
+        .contact-phone a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* CTA Section Responsive */
         .cta {
-            padding: 80px 0;
+            padding: 50px 0;
             background: linear-gradient(45deg, var(--color-primary), var(--color-primary-dark));
             color: white;
             text-align: center;
         }
 
-        /* Footer */
+        @media (min-width: 768px) {
+            .cta {
+                padding: 80px 0;
+            }
+        }
+
+        .cta h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .cta h2 {
+                font-size: 2.5rem;
+            }
+        }
+
+        .cta p {
+            margin: 1rem auto;
+            max-width: 600px;
+            padding: 0 1rem;
+            font-size: 0.95rem;
+        }
+
+        /* Footer Responsive */
         footer {
             background-color: var(--color-dark);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            footer {
+                padding: 4rem 0 2rem;
+            }
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        @media (min-width: 480px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                text-align: left;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3rem;
+                margin-bottom: 3rem;
+            }
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
         .footer-logo span {
             color: var(--color-accent);
+        }
+
+        footer img {
+            margin: 0 auto;
+        }
+
+        @media (min-width: 480px) {
+            footer img {
+                margin: 0;
+            }
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 480px) {
+            .footer-social {
+                justify-content: flex-start;
+            }
         }
 
         .footer-social a {
@@ -571,7 +902,6 @@
             height: 36px;
             background: rgba(255,255,255,0.1);
             border-radius: 50%;
-            margin-right: 10px;
             transition: var(--transition);
         }
 
@@ -582,37 +912,62 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
         }
 
+        @media (min-width: 768px) {
+            .footer-bottom {
+                font-size: 0.9rem;
+                padding-top: 2rem;
+            }
+        }
+
+        /* Animations */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes float {
-            0% { transform: translateY(-50%) translateX(0); }
-            50% { transform: translateY(-55%) translateX(10px); }
-            100% { transform: translateY(-50%) translateX(0); }
+            0% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-15px) translateX(10px); }
+            100% { transform: translateY(0) translateX(0); }
         }
 
-        @media (max-width: 992px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-image { position: relative; width: 100%; max-width: 500px; margin-top: 2rem; transform: none; right: auto; top: auto; }
-            .hero { text-align: center; padding-top: 150px; }
-            .hero-content { margin: 0 auto; }
-            .hero-actions { justify-content: center; }
-            .about-grid, .management-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .section-title h2 { font-size: 2.2rem; }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.05; }
+            100% { transform: scale(1.2); opacity: 0.15; }
         }
 
-        @media (max-width: 768px) {
-            .hamburger { display: block; }
-            .nav-menu { position: fixed; left: -100%; top: 0; flex-direction: column; background: white; width: 100%; height: 100vh; text-align: center; padding-top: 100px; transition: 0.5s; }
-            .nav-menu.active { left: 0; }
-            .nav-link { padding: 1.2rem 0; display: block; }
-            .hero-title { font-size: 2rem; }
+        /* Ajustes adicionales para móviles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.2rem;
+            }
+            
+            .value-icon {
+                font-size: 2rem;
+            }
+            
+            .tool-card i {
+                font-size: 2rem;
+            }
+            
+            .tool-card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Estilos para elementos con animación scroll */
+        .value-card, .offering-item, .tool-card, .owner-card {
+            opacity: 0;
+            transition: all 0.5s ease-out;
         }
     </style>
 </head>
@@ -620,13 +975,8 @@
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">
-                <!-- Espacio para logo real: reemplazar el contenido de .logo-img por una etiqueta <img> -->
-                <div class="logo-img" style="background: none; padding: 0;">
-                    <!--<i class="fas fa-building" style="font-size: 2rem; color: var(--color-primary);"></i>-->
-                    <img src="img/logo.png" alt="Roizenberg Consorcios" style="height: 140px;">
-                </div>
-                <!--Roizenberg<span>Consorcios</span>-->
-                    <p>Roizenberg Administración de Consorcios</P>
+                <img src="img/logo.png" alt="Roizenberg Consorcios" style="height: 60px;">
+                <p>Roizenberg<br><small>Administración de Consorcios</small></p>
             </a>
             <nav>
                 <ul class="nav-menu">
@@ -659,7 +1009,6 @@
                 </div>
             </div>
             <div class="hero-image">
-                <!-- Imagen referencial: edificio moderno -->
                 <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Edificio residencial administrado">
             </div>
         </div>
@@ -674,14 +1023,12 @@
                         <p>En <strong>Roizenberg Administración de Consorcios</strong> brindamos un servicio profesional basado en la confianza, la transparencia y el trato personalizado. Somos una empresa familiar, atendida directamente por sus dueños: <strong>Gustavo Martín Roizenberg</strong> y <strong>Marysol Isabel Tello</strong>.</p>
                         <p>Nos ocupamos personalmente de cada consorcio, lo que nos permite estar en cada detalle, dar respuestas rápidas y generar un vínculo cercano con los propietarios. Nuestro objetivo es simple: que cada consorcista sienta que su edificio está bien administrado, cuidado y en buenas manos.</p>
                         <div class="family-badge">
-                            <i class="fas fa-users" style="font-size: 2rem; color: var(--color-accent);"></i>
+                            <i class="fas fa-users" style="font-size: 1.5rem; color: var(--color-accent);"></i>
                             <span><strong>Empresa familiar</strong> · Atención directa sin intermediarios</span>
                         </div>
                     </div>
                 </div>
                 <div class="about-image">
-                    <!-- placeholder imagen de los dueños o equipo -->
-                    <!--<img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Administradores profesionales" style="width:100%; height:100%; object-fit:cover;"> -->
                     <img src="img/Administradores.jpg" alt="Nuestro equipo de administradores profesionales" style="width:100%; height:100%; object-fit:cover;">
                 </div>
             </div>
@@ -730,7 +1077,6 @@
                     <p>Además, brindamos una <strong>rendición de cuentas anual detallada</strong>, para que cada propietario tenga total claridad sobre la gestión.</p>
                 </div>
                 <div class="management-image" style="border-radius: 20px; overflow: hidden;">
-                    <!-- Imagen referencial: documentos/reunión -->
                     <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gestión financiera" style="width:100%;">
                 </div>
             </div>
@@ -755,21 +1101,22 @@
         <div class="container">
             <div class="contact-grid">
                 <div class="owner-card">
-                    <i class="fas fa-user-tie" style="font-size: 3rem; color: var(--color-primary);"></i>
+                    <i class="fas fa-user-tie" style="font-size: 2.5rem; color: var(--color-primary);"></i>
                     <h3>Gustavo Martín Roizenberg</h3>
                     <h3>Marysol Isabel Tello</h3>
                     <p>Administración de Consorcios<br>Matrícula N° 12942</p>
-                    <!-- <div class="contact-phone"><i class="fab fa-whatsapp"></i> 15-3081-6500</div>-->
-                    <div class="contact-phone"> <a href="https://wa.link/d3bxno" target="_blank"><i class="fab fa-whatsapp"></i> 15-3081-6500</a></div>
+                    <div class="contact-phone">
+                        <a href="https://wa.link/d3bxno" target="_blank"><i class="fab fa-whatsapp"></i> 15-3081-6500</a>
+                    </div>
                     <a href="tel:+541530816500" class="btn btn-accent" style="margin-top: 1rem;">Llamar ahora</a>
                 </div>
                 <div>
-                    <h2 style="color: var(--color-primary);">📍 Atención Personalizada</h2>
+                    <h2 style="color: var(--color-primary); font-size: 1.5rem;">📍 Atención Personalizada</h2>
                     <p style="margin-bottom: 1rem;">A diferencia de grandes administraciones, en nuestro caso <strong>siempre vas a hablar directamente con Gustavo y Marysol</strong>. No hay intermediarios. Nos involucramos en cada consorcio como si fuera propio.</p>
-                    <div style="background: var(--color-light); padding: 1.5rem; border-radius: 20px;">
-                        <i class="fas fa-map-marker-alt"></i>  Atención en CABA y GBA<br>
-                        <i class="fas fa-envelope"></i>  info@administracionroizenberg.ar<br>
-                        <i class="fas fa-clock"></i>  Lunes a viernes de 9 a 18 hs.
+                    <div style="background: var(--color-light); padding: 1.2rem; border-radius: 20px;">
+                        <i class="fas fa-map-marker-alt"></i> Atención en CABA y GBA<br><br>
+                        <i class="fas fa-envelope"></i> info@administracionroizenberg.ar<br><br>
+                        <i class="fas fa-clock"></i> Lunes a viernes de 9 a 18 hs.
                     </div>
                 </div>
             </div>
@@ -779,9 +1126,8 @@
     <section class="cta">
         <div class="container">
             <h2>¿Necesitas una administración presente y confiable?</h2>
-            <p style="margin: 1rem auto; max-width: 600px;">Contactanos hoy mismo y empezá a sentir la diferencia de una gestión cercana.</p>
+            <p>Contactanos hoy mismo y empezá a sentir la diferencia de una gestión cercana.</p>
             <a href="https://wa.link/d3bxno" class="btn btn-accent" style="background: white; color: var(--color-primary);"><i class="fab fa-whatsapp"></i> 15-3081-6500</a>
-            <!--<div class="contact-phone"> <a href="https://wa.link/d3bxno" target="_blank"><i class="fab fa-whatsapp"></i> 15-3081-6500</a></div>-->
         </div>
     </section>
 
@@ -789,9 +1135,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <!--<div class="footer-logo">Roizenberg<span>Consorcios</span></div>-->
-                    <img src="img/footerlogo.png" alt="Roizenberg Consorcios" style="height: 140px;">
-                    <p>Administración de consorcios con calidez, transparencia y compromiso real.</p>
+                    <img src="img/footerlogo.png" alt="Roizenberg Consorcios" style="height: 70px;">
+                    <p style="margin-top: 0.8rem;">Administración de consorcios con calidez, transparencia y compromiso real.</p>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -800,7 +1145,7 @@
                 </div>
                 <div>
                     <h4>Enlaces</h4>
-                    <ul style="list-style: none;">
+                    <ul style="list-style: none; margin-top: 0.5rem;">
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#nosotros">Nosotros</a></li>
                         <li><a href="#filosofia">Filosofía</a></li>
@@ -809,7 +1154,7 @@
                 </div>
                 <div>
                     <h4>Contacto directo</h4>
-                    <p><i class="fas fa-phone-alt"></i> 15-3081-6500</p>
+                    <p style="margin-top: 0.5rem;"><i class="fas fa-phone-alt"></i> 15-3081-6500</p>
                     <p><i class="fas fa-envelope"></i> info@administracionroizenberg.ar</p>
                     <p><i class="fas fa-map-marker-alt"></i> CABA, Argentina</p>
                 </div>
@@ -824,11 +1169,15 @@
         // Menú hamburguesa
         const hamburger = document.querySelector(".hamburger");
         const navMenu = document.querySelector(".nav-menu");
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
-            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
-        });
+        
+        if (hamburger) {
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+                document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : 'auto';
+            });
+        }
+        
         document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
             hamburger.classList.remove("active");
             navMenu.classList.remove("active");
@@ -843,20 +1192,31 @@
                 if(target) {
                     hamburger.classList.remove("active");
                     navMenu.classList.remove("active");
-                    window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+                    const offset = 80;
+                    const targetPosition = target.offsetTop - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                    document.body.style.overflow = 'auto';
                 }
             });
         });
 
-        // Animación simple al hacer scroll (opcional)
+        // Intersection Observer para animaciones
         const animateElements = document.querySelectorAll('.value-card, .offering-item, .tool-card, .owner-card');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting) entry.target.style.opacity = '1';
-                else return;
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
             });
-        }, { threshold: 0.2 });
-        animateElements.forEach(el => { el.style.opacity = '0'; el.style.transition = '0.5s'; observer.observe(el); });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        
+        animateElements.forEach(el => { 
+            el.style.opacity = '0'; 
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+            observer.observe(el); 
+        });
     </script>
 </body>
 </html>
